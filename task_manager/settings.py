@@ -100,7 +100,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = "task.Manager"
+AUTH_USER_MODEL = "task.Worker"
 
 
 # Internationalization
