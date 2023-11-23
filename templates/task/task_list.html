@@ -28,8 +28,7 @@
       {% for task in task_list %}
         <tr>
         <td>
-          {#          <a href="{% url "task:task-detail" pk=task.id %} ">{{ car.id }}</a>#}
-          {{ task.id }}
+          <a href="{% url "task:task-detail" pk=task.id %} ">{{ task.id }}</a>
         </td>
         <td>
           {{ task.name }}

@@ -1,7 +1,7 @@
 from django.urls import path
 
 from task.views import (
-    index, TaskTypeListView, TaskListView, PositionListView, WorkerListView,
+    index, TaskTypeListView, TaskListView, PositionListView, WorkerListView, TaskDetailView, toggle_assign_to_task,
 )
 
 urlpatterns = [
@@ -15,6 +15,14 @@ urlpatterns = [
         "tasks/",
         TaskListView.as_view(),
         name="task-list",
+    ),
+    path(
+        "tasks/<int:pk>/", TaskDetailView.as_view(), name="task-detail"
+    ),
+    path(
+        "tasks/<int:pk>/toggle-assign/",
+        toggle_assign_to_task,
+        name="toggle-task-assign",
     ),
     path(
         "positins/",
