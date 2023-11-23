@@ -1,9 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
-from django.views import generic
+from django.views import generic, View
 
 from task.forms import TaskTypeSearchForm, TaskForm, TaskSearchForm, WorkerForm, WorkerSearchForm, PositionSearchForm
 from task.models import TaskType, Task, Position, Worker
@@ -40,9 +40,7 @@ class TaskTypeListView(LoginRequiredMixin, generic.ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(TaskTypeListView, self).get_context_data(**kwargs)
-
         name = self.request.GET.get("name", "")
-
         context["search_form"] = TaskTypeSearchForm(initial={
             "name": name
         })
@@ -82,9 +80,7 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(TaskListView, self).get_context_data(**kwargs)
-
         name = self.request.GET.get("name", "")
-
         context["search_form"] = TaskSearchForm(initial={
             "name": name
         })
@@ -128,9 +124,7 @@ class PositionListView(LoginRequiredMixin, generic.ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(PositionListView, self).get_context_data(**kwargs)
-
         name = self.request.GET.get("name", "")
-
         context["search_form"] = PositionSearchForm(initial={
             "name": name
         })
@@ -204,6 +198,14 @@ class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
 class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Worker
     success_url = reverse_lazy("task:worker-list")
+
+
+class MarkTaskAsDoneView(View):
+    def get(self, request, pk):
+        task = get_object_or_404(Task, id=pk)
+        task.is_completed = True
+        task.save()
+        return redirect('task:task-detail', pk=task.id)
 
 
 @login_required

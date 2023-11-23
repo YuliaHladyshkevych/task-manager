@@ -4,7 +4,7 @@ from task.views import (
     index, TaskTypeListView, TaskListView, PositionListView, WorkerListView, TaskDetailView, toggle_assign_to_task,
     WorkerDetailView, TaskTypeCreateView, TaskTypeUpdateView, TaskTypeDeleteView, TaskCreateView, TaskUpdateView,
     TaskDeleteView, WorkerCreateView, WorkerUpdateView, WorkerDeleteView, PositionCreateView, PositionUpdateView,
-    PositionDeleteView,
+    PositionDeleteView, MarkTaskAsDoneView,
 )
 
 urlpatterns = [
@@ -44,6 +44,7 @@ urlpatterns = [
         toggle_assign_to_task,
         name="toggle-task-assign",
     ),
+    path('tasks/<int:pk>/mark-as-done/', MarkTaskAsDoneView.as_view(), name="mark-task-done"),
     path(
         "tasks/create/",
         TaskCreateView.as_view(),
