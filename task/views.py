@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from task.forms import TaskTypeSearchForm, TaskForm, TaskSearchForm, WorkerCreationForm, WorkerSearchForm
+from task.forms import TaskTypeSearchForm, TaskForm, TaskSearchForm, WorkerForm, WorkerSearchForm
 from task.models import TaskType, Task, Position, Worker
 
 
@@ -127,6 +127,23 @@ class PositionListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 5
 
 
+class PositionCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Position
+    fields = "__all__"
+    success_url = reverse_lazy("task:position-list")
+
+
+class PositionUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Position
+    fields = "__all__"
+    success_url = reverse_lazy("task:position-list")
+
+
+class PositionDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Position
+    success_url = reverse_lazy("task:position-list")
+
+
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     paginate_by = 5
@@ -154,18 +171,19 @@ class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
 
 class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
     model = Worker
-    form_class = WorkerCreationForm
+    form_class = WorkerForm
+    success_url = reverse_lazy("task:worker-list")
 
 
 class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Worker
-    form_class = WorkerCreationForm
+    form_class = WorkerForm
     success_url = reverse_lazy("task:worker-list")
 
 
 class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Worker
-    success_url = reverse_lazy("")
+    success_url = reverse_lazy("task:worker-list")
 
 
 @login_required

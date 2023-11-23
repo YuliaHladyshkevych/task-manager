@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 
-from task.models import Task, Worker
+from task.models import Task, Worker, Position
 
 
 class TaskTypeSearchForm(forms.Form):
@@ -48,7 +48,7 @@ class WorkerSearchForm(forms.Form):
     )
 
 
-class WorkerCreationForm(UserCreationForm):
+class WorkerForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = Worker
         fields = UserCreationForm.Meta.fields + (

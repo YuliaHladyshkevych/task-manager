@@ -4,9 +4,9 @@
 {% block content %}
   <h1>
     Position List
-{#    <a href="{% url 'taxi:manufacturer-create' %}" class="btn btn-primary link-to-page">#}
-{#      Create#}
-{#    </a>#}
+    <a href="{% url 'task:position-create' %}" class="btn btn-primary link-to-page">
+      Create
+    </a>
   </h1>
 {#  <form action="" method="get" class="form-inline">#}
 {#    {{ search_form|crispy }}#}
@@ -30,17 +30,17 @@
           <td>
             {{ position.name }}
           </td>
-{#          <td>#}
-{#            <a href="{% url 'taxi:manufacturer-update' pk=manufacturer.id %}">#}
-{#              Update#}
-{#            </a>#}
-{#          </td>#}
-{#          <td>#}
-{#            <a style="color: red"#}
-{#               href="{% url 'taxi:manufacturer-delete' pk=manufacturer.id %}">#}
-{#              Delete#}
-{#            </a>#}
-{#          </td>#}
+          <td>
+            <a href="{% url 'task:position-update' pk=position.id %}">
+              Update
+            </a>
+          </td>
+          <td>
+            <a style="color: red"
+               href="{% url 'task:position-delete' pk=position.id %}">
+              Delete
+            </a>
+          </td>
         </tr>
       {% endfor %}
     </table>
