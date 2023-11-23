@@ -39,3 +39,8 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 5
 
 
+class PositionListView(LoginRequiredMixin, generic.ListView):
+    model = Position
+    paginate_by = 5
+
+
