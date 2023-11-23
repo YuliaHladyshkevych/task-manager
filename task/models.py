@@ -50,7 +50,7 @@ class Task(models.Model):
 
     name = models.CharField(max_length=100)
     description = models.TextField()
-    deadline = models.DateField(auto_now_add=True)
+    deadline = models.DateField()
     is_completed = models.BooleanField(default=False)
     priority = models.CharField(max_length=20, choices=PRIORITY_CHOICES)
     task_type = models.ForeignKey(TaskType, on_delete=models.CASCADE)
