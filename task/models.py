@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.urls import reverse
@@ -58,6 +60,9 @@ class Task(models.Model):
 
     class Meta:
         ordering = ["-deadline"]
+
+    def completed_before_deadline(self):
+        return self.deadline >= datetime.now().date()
 
     def __str__(self):
         return f"{self.name}"
