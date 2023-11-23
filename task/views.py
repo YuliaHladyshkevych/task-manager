@@ -57,6 +57,11 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 5
 
 
+class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Worker
+    queryset = Worker.objects.all().prefetch_related("tasks")
+
+
 @login_required
 def toggle_assign_to_task(request, pk):
     worker = Worker.objects.get(id=request.user.id)
