@@ -18,10 +18,10 @@
   <p><strong>Priority:</strong> {{ task.priority }}</p>
   <p><strong>Status:
     {% if task.is_completed %}
-      {% if task.completed_after_deadline %}
-        This task was completed after the deadline.
-      {% else %}
+      {% if task.completed_before_deadline %}
         This task was completed on time.
+      {% else %}
+        This task was completed after the deadline.
       {% endif %}
     {% else %} In process {% endif %}
   </strong></p>

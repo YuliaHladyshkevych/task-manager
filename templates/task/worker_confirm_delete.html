@@ -8,6 +8,6 @@
     {% csrf_token %}
 
     <input type="submit" value="Confirm" class="btn btn-danger">
-    <a href="{% url 'task:worker-detail' pk=worker.id%}" class="btn btn-success">Cancel</a>
+    <a href="{% url 'task:worker-detail' pk=worker.id %}" class="btn btn-success">Cancel</a>
   </form>
 {% endblock %}
