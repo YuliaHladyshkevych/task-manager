@@ -36,16 +36,23 @@ Task Manager simplifies task organization and delegation. It allows users to cre
 2. **Navigate to the project directory:**
    ```bash
    cd task-manager
-3. **Install dependencies:**
+   
+3. If you are using PyCharm - it may propose you to automatically create venv for your project and install requirements in it, but if not:
+   ```bash
+   python -m venv venv
+   venv\Scripts\activate (on Windows)
+   source venv/bin/activate (on macOS)
+   
+4. **Install dependencies:**
    ```bash
    pip install -r requirements.txt
-4. **Apply database migrations:**
+5. **Apply database migrations:**
    ```bash
    python manage.py migrate
-5. **Start the development server:**
+6. **Start the development server:**
    ```bash
    python manage.py runserver
-6. **Access the application:**
+7. **Access the application:**
 Open a web browser and go to http://127.0.0.1:8000/ to access the Task Manager application.
 
 ## Usage
@@ -61,11 +68,12 @@ Contributions are welcome! To contribute to this project, follow these steps:
 
 1. **Fork the repository:** Click the "Fork" button on the top right corner of this repository's page.
    
-2. **Clone your fork:** Clone the repository to your local machine using the following command (replace `<your-username>` with your GitHub username):
+2. **Clone your fork:** Clone the repository to your local machine using the following command:
 
    ```bash
-   git clone https://github.com/<your-username>/task-manager.git
-
+   git clone the-link-from-your-forked-repo
+You can get the link by clicking the Clone or download button in your repo.
+   
 3. **Create Your Feature Branch:** Start working on a new feature by creating a dedicated branch. Choose a descriptive name for the branch, such as `feature/YourFeature`:
 
    ```bash
