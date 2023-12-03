@@ -15,7 +15,7 @@ class ModelsTest(TestCase):
             password="test321",
             first_name="first",
             last_name="last",
-            position=self.position
+            position=self.position,
         )
 
         self.task = Task.objects.create(

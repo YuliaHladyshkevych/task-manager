@@ -6,7 +6,6 @@ from task.models import Task, Worker
 
 
 class TaskTypeSearchForm(forms.Form):
-
     name = forms.CharField(
         max_length=255,
         required=False,
@@ -27,7 +26,6 @@ class TaskForm(forms.ModelForm):
 
 
 class TaskSearchForm(forms.Form):
-
     name = forms.CharField(
         max_length=255,
         required=False,
@@ -41,9 +39,7 @@ class WorkerSearchForm(forms.Form):
         max_length=150,
         required=False,
         label="",
-        widget=forms.TextInput(
-            attrs={"placeholder": "Search by username"}
-        )
+        widget=forms.TextInput(attrs={"placeholder": "Search by username"}),
     )
 
 
@@ -58,7 +54,6 @@ class WorkerForm(UserCreationForm):
 
 
 class PositionSearchForm(forms.Form):
-
     name = forms.CharField(
         max_length=255,
         required=False,

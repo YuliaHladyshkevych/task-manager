@@ -5,7 +5,14 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import generic, View
 
-from task.forms import TaskTypeSearchForm, TaskForm, TaskSearchForm, WorkerForm, WorkerSearchForm, PositionSearchForm
+from task.forms import (
+    TaskTypeSearchForm,
+    TaskForm,
+    TaskSearchForm,
+    WorkerForm,
+    WorkerSearchForm,
+    PositionSearchForm,
+)
 from task.models import TaskType, Task, Position, Worker
 
 
@@ -41,9 +48,7 @@ class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(TaskTypeListView, self).get_context_data(**kwargs)
         name = self.request.GET.get("name", "")
-        context["search_form"] = TaskTypeSearchForm(initial={
-            "name": name
-        })
+        context["search_form"] = TaskTypeSearchForm(initial={"name": name})
 
         return context
 
@@ -81,9 +86,7 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(TaskListView, self).get_context_data(**kwargs)
         name = self.request.GET.get("name", "")
-        context["search_form"] = TaskSearchForm(initial={
-            "name": name
-        })
+        context["search_form"] = TaskSearchForm(initial={"name": name})
 
         return context
 
@@ -125,9 +128,7 @@ class PositionListView(LoginRequiredMixin, generic.ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(PositionListView, self).get_context_data(**kwargs)
         name = self.request.GET.get("name", "")
-        context["search_form"] = PositionSearchForm(initial={
-            "name": name
-        })
+        context["search_form"] = PositionSearchForm(initial={"name": name})
 
         return context
 
@@ -165,9 +166,7 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(WorkerListView, self).get_context_data(**kwargs)
         username = self.request.GET.get("username", "")
-        context["search_form"] = WorkerSearchForm(
-            initial={"username": username}
-        )
+        context["search_form"] = WorkerSearchForm(initial={"username": username})
         return context
 
     def get_queryset(self):
@@ -205,15 +204,13 @@ class MarkTaskAsDoneView(View):
         task = get_object_or_404(Task, id=pk)
         task.is_completed = True
         task.save()
-        return redirect('task:task-detail', pk=task.id)
+        return redirect("task:task-detail", pk=task.id)
 
 
 @login_required
 def toggle_assign_to_task(request, pk):
     worker = Worker.objects.get(id=request.user.id)
-    if (
-        Task.objects.get(id=pk) in worker.tasks.all()
-    ):
+    if Task.objects.get(id=pk) in worker.tasks.all():
         worker.tasks.remove(pk)
     else:
         worker.tasks.add(pk)
