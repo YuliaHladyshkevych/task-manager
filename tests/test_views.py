@@ -1,8 +1,10 @@
-from django.contrib.auth import get_user_model
-from django.test import TestCase
 from django.urls import reverse
-from task.models import TaskType, Task, Position
+from django.test import TestCase
+from django.contrib.auth import get_user_model
 from datetime import datetime
+
+from task.models import TaskType, Task, Position
+
 
 TASKTYPE_URL = reverse("task:tasktype-list")
 TASK_URL = reverse("task:task-list")

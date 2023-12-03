@@ -1,7 +1,8 @@
 from django.test import TestCase
-from task.forms import TaskTypeSearchForm, WorkerForm, PositionSearchForm
-from task.models import Position
 from django.contrib.auth import get_user_model
+
+from task.models import Position
+from task.forms import TaskTypeSearchForm, WorkerForm, PositionSearchForm
 
 
 class FormsTests(TestCase):
